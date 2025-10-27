@@ -4,7 +4,7 @@
 
 Event Buddy is a full-stack event booking system that allows users to browse, book, and manage event tickets, while administrators can create and manage events through a separate dashboard. The project includes authentication, role-based access control, and validation on both client and server sides.
 
----
+
 
 ## Overview
 
@@ -13,7 +13,7 @@ This project consists of two parts:
 - **Frontend**: Next.js application (TypeScript + Tailwind CSS)
 - **Backend**: NestJS API server (TypeScript + Prisma + PostgreSQL)
 
----
+
 
 ## Features
 
@@ -39,7 +39,7 @@ This project consists of two parts:
 - View all events with booking counts
 - Manage events from the admin dashboard
 
----
+
 
 ## Technology Stack
 
@@ -50,7 +50,7 @@ This project consists of two parts:
 | Database       | PostgreSQL                               |
 | Authentication | JWT (Bearer Token)                       |
 
----
+
 
 ## Project Structure
 
@@ -67,7 +67,7 @@ event-buddy/
      └── .env.local
 ```
 
----
+
 
 ## Prerequisites
 
@@ -76,7 +76,7 @@ event-buddy/
 - PostgreSQL database
 - Railway or local database setup (optional)
 
----
+
 
 ## Backend Setup (NestJS)
 
@@ -126,7 +126,6 @@ event-buddy/
 | GET    | `/bookings/me`   | Retrieve user’s bookings        |
 | DELETE | `/bookings/:id`  | Cancel booking                  |
 
----
 
 ## Frontend Setup (Next.js)
 
@@ -152,7 +151,7 @@ event-buddy/
 
    The frontend will be available at `http://localhost:3000`.
 
----
+
 
 ## Roles and Permissions
 
@@ -167,7 +166,6 @@ To assign the admin role manually, execute the following SQL command:
 UPDATE "User" SET role = 'ADMIN' WHERE email = 'admin@example.com';
 ```
 
----
 
 ## Common Commands
 
@@ -179,7 +177,6 @@ UPDATE "User" SET role = 'ADMIN' WHERE email = 'admin@example.com';
 | Start backend server    | `npm run start:dev`      |
 | Start frontend server   | `npm run dev`            |
 
----
 
 ## Submission Checklist
 
@@ -190,7 +187,7 @@ UPDATE "User" SET role = 'ADMIN' WHERE email = 'admin@example.com';
 - Admin event management functionality
 - Proper documentation with setup instructions
 
----
+
 
 **End of Document**
 This README provides a complete reference for setting up, running, and maintaining the Event Buddy project.
