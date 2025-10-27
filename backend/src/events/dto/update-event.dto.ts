@@ -9,9 +9,7 @@ import {
   IsDateString,
 } from 'class-validator';
 
-// PartialType makes all CreateEventDto fields optional for PATCH
 export class UpdateEventDto extends PartialType(CreateEventDto) {
-  // (Optional) If you want explicit validators (not required, but fine):
   @IsOptional() @IsString() title?: string;
   @IsOptional() @IsString() description?: string;
   @IsOptional() @IsString() location?: string;

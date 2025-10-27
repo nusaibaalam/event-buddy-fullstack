@@ -8,6 +8,8 @@ import {
   Patch,
   Delete,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -15,21 +17,23 @@ import { UpdateEventDto } from './dto/update-event.dto';
 import { JwtAuthGuard } from '../auth/jwt.guard';
 import { Roles } from '../common/decorators/roles.decorator';
 import { RolesGuard } from '../common/guards/roles.guard';
+import { ListEventsDto } from './dto/list-events.dto';
+import { ApiBearerAuth, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
+@ApiTags('events')
 @Controller('events')
 export class EventsController {
   constructor(private readonly events: EventsService) {}
 
-  // PUBLIC: list events (status = upcoming | past | undefined)
   @Get()
-  list(@Query('status') status?: 'upcoming' | 'past') {
-    return this.events.list(status);
+  findAll(@Query() dto: ListEventsDto) {
+    return this.events.findAll(dto);
   }
 
-  // PUBLIC: get event details
   @Get(':id')
-  get(@Param('id') id: string) {
-    return this.events.get(id);
+  findOne(@Param('id') id: string) {
+    return this.events.findOne(id);
   }
 
   // ADMIN: create event
@@ -52,7 +56,13 @@ export class EventsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN')
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.events.remove(id);
+  delete(@Param('id') id: string) {
+    return this.events.delete(id);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    return { url: `/uploads/${file.filename}` };
   }
 }

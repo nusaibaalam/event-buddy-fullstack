@@ -25,7 +25,6 @@ export class BookingsService {
       );
     }
 
-    // current remaining (outside of tx for fast fail)
     const agg = await this.prisma.booking.aggregate({
       where: { eventId: dto.eventId },
       _sum: { seats: true },
@@ -64,7 +63,6 @@ export class BookingsService {
         return { booking, availableSpots };
       });
 
-      // return booking plus the new availability
       return {
         ...result.booking,
         availableSpots: result.availableSpots,

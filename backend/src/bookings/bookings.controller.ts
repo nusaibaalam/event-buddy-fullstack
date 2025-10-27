@@ -25,9 +25,8 @@ export class BookingsController {
     return this.bookings.create(user.id, dto);
   }
 
-  // GET /bookings/me
   @Get('me')
-  my(@CurrentUser() user: any) {
+  async getMyBookings(@CurrentUser() user: any) {
     return this.bookings.findMyBookings(user.id);
   }
 

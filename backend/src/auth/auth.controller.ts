@@ -22,16 +22,13 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() dto: RegisterDto) {
-    // 1️⃣ Check if email already exists
     const existing = await this.users.findByEmail(dto.email);
     if (existing) {
       throw new ConflictException('Email is already registered');
     }
 
-    // 2️⃣ Hash password
     const hashed = await this.auth.hashPassword(dto.password);
 
-    // 3️⃣ Create user
     const user = await this.users.create({
       name: dto.name,
       email: dto.email,
@@ -39,7 +36,6 @@ export class AuthController {
       role: 'USER',
     });
 
-    // 4️⃣ Issue token
     const accessToken = this.auth.signAccessToken(user);
     return { accessToken };
   }
@@ -54,6 +50,6 @@ export class AuthController {
   @Get('me')
   @UseGuards(JwtAuthGuard)
   me(@CurrentUser() user: any) {
-    return { user };
+    return user;
   }
 }
