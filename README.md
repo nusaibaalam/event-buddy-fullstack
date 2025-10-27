@@ -178,14 +178,6 @@ UPDATE "User" SET role = 'ADMIN' WHERE email = 'admin@example.com';
 | Start frontend server   | `npm run dev`            |
 
 
-## Submission Checklist
-
-- Functional frontend and backend integration
-- Responsive UI (mobile and desktop)
-- Authentication with JWT
-- Complete booking logic and validation
-- Admin event management functionality
-- Proper documentation with setup instructions
 
 
 
